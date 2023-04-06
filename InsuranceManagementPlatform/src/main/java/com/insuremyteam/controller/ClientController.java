@@ -28,32 +28,37 @@ public class ClientController {
 	@Autowired
 	private ClientService clientService;
 	
-	@PostMapping("/client")
+	//create new Client
+	@PostMapping()
 	public ResponseEntity<ClientDTO> registerClient(@Valid @RequestBody ClientDTO clientDTO) {
 		ClientDTO registeredClient = this.clientService.registerUser(clientDTO);
 		return new ResponseEntity<ClientDTO>(registeredClient, HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/client/{clientID}")
-	public ResponseEntity<ClientDTO> getClientByID(@PathVariable Integer clientID) {
+	//Fetch a specific client by ID
+	@GetMapping("/{id}")
+	public ResponseEntity<ClientDTO> getClientByID(@PathVariable("id") Integer clientID) {
 		ClientDTO client = this.clientService.getClientByID(clientID);
 		return new ResponseEntity<ClientDTO>(client, HttpStatus.OK);
 	}
 	
-	@GetMapping("/")
+	//fetch all clients
+	@GetMapping()
 	public ResponseEntity<List<ClientDTO>> getAllClients() {
 		List<ClientDTO> allClients = this.clientService.getAllClients();
 		return new ResponseEntity<List<ClientDTO>>(allClients, HttpStatus.OK);
 	}
 	
-	@PutMapping("/client/{clientID}")
-	public ResponseEntity<ClientDTO> updateClient(@RequestBody ClientDTO clientDTO, @PathVariable Integer clientID) {
+	//update a clients's information
+	@PutMapping("/{id}")
+	public ResponseEntity<ClientDTO> updateClient(@RequestBody ClientDTO clientDTO, @PathVariable("id") Integer clientID) {
 		ClientDTO updatedClient = this.clientService.updateClient(clientDTO, clientID);
 		return new ResponseEntity<ClientDTO>(updatedClient, HttpStatus.ACCEPTED);
 	}
 	
-	@DeleteMapping("/client/{clientID}")
-	public ResponseEntity<?> deleteClientByID(@PathVariable Integer clientID) {
+	//delete a client
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteClientByID(@PathVariable("id") Integer clientID) {
 		this.clientService.deleteClientByID(clientID);
 		return new ResponseEntity<>(Map.of("Message ", "Client deleted"), HttpStatus.OK);
 	}
