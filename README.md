@@ -87,11 +87,7 @@ Database layer:
 - spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 - spring.datasource.username=enter_username
 - spring.datasource.password=enter_password
-```
+
 ## API Root Endpoint
-```
-https://localhost:8888/
-```
-
-## 
-
+- https://localhost:8888/
+- If you have any doubt about this application feel free to reach out kolgirkajol@gmail.com
