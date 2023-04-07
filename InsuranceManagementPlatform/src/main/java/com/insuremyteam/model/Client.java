@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,12 +22,13 @@ import lombok.NoArgsConstructor;
 @Data
 public class Client {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer cliendId;
 	
+	@Pattern(regexp = "[A-Z][a-z]*", message = "name should start with capital letter")
 	private String name;
 	
-	//@Past
+	@Pattern(regexp = "dd-mm-yyyy", message = "Please provice date of birth format dd-mm-yyyy in this way")
 	private String dateOfBirth;
 	
 	private String address;
